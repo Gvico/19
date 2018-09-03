@@ -1,3 +1,22 @@
+typedef struct	s_map
+{
+	int			size;
+	char		**array;
+}				t_map;
+typedef struct	s_point
+{
+	int			x;
+	int			y;
+}				t_point;
+typedef struct	s_etris
+{
+	char		**pos;
+	int			width;
+	int			height;
+	char		value;
+}				t_etris;
+
+
 t_list	*read_tetri(int fd)
 {
 	char	*buf;

@@ -10,11 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
-#include "libft.h"
+#include "fillit.h"
 
 int	main(int argc, char **argv)
 {
+	if (argc != 2)
+	{
+		ft_putstr_fd("usage: fillit input_file\n", 2);
+		return (1);
+	}
 	return (0);
 }

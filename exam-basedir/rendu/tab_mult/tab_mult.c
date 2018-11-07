@@ -6,7 +6,7 @@
 /*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 10:47:18 by exam              #+#    #+#             */
-/*   Updated: 2018/10/24 11:47:07 by exam             ###   ########.fr       */
+/*   Updated: 2018/11/07 14:44:28 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_putstr(char *str)
 {
-	int i;
-	char buf;
+	int		i;
+	char	buf;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -29,9 +29,10 @@ void	ft_putstr(char *str)
 int		ft_pow10(const int nb)
 {
 	int puiss;
-	int nbr = nb;
+	int nbr;
 
 	puiss = 1;
+	nbr = nb;
 	while (nbr > 0)
 	{
 		puiss *= 10;
@@ -62,9 +63,10 @@ int		cus_atoi(const char *str)
 int		ft_numlen(const int nb)
 {
 	int len;
-	int nbr = nb;
+	int nbr;
 
 	len = 0;
+	nbr = nb;
 	while (nbr > 0)
 	{
 		nbr /= 10;
@@ -75,10 +77,12 @@ int		ft_numlen(const int nb)
 
 void	cus_itoa(const int nb)
 {
-	int nbr = nb;
-	int	len = ft_numlen(nbr) - 1;
-	char buf;
+	int		nbr;
+	int		len;
+	char	buf;
 
+	nbr = nb;
+	len = ft_numlen(nbr) - 1;
 	while (len >= 0)
 	{
 		buf = (nbr / ft_pow10(len)) + '0';
@@ -88,7 +92,7 @@ void	cus_itoa(const int nb)
 	}
 }
 
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	int i;
 	int nb;
@@ -110,6 +114,5 @@ int	main(int argc, char **argv)
 		ft_putstr("\n");
 		i++;
 	}
-
 	return (0);
 }

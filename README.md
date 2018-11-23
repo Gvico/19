@@ -1,4 +1,4 @@
 # 19
 
-Finished and (normally) functional projects. Except for the directory with number names : Those are either new projects for wich i don't have an official repo yet (0), or programs i make for fun (1).
-Libft will be updated over the time, the other projects should not be modified.
+Finished and (normally) functional projects (except for the directories with a number before their name).
+Libft will be updated over the time, the other projects will probably not.

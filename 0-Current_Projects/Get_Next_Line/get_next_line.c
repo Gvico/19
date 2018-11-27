@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 11:03:18 by gvico             #+#    #+#             */
-/*   Updated: 2018/11/23 11:42:32 by gvico            ###   ########.fr       */
+/*   Updated: 2018/11/27 14:47:54 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ int	get_next_line(const int fd, char **line)
 		return (-1);
 	i = 0;
 	read(fd, buf, BUFF_SIZE);
+	// *line = ft_strnew(1);
 	while (buf[i] != '\n' && i < BUFF_SIZE)
 	{
-		*line = buf[i];
+		**line = buf[i];
 		i++;
 		*line++;
 	}

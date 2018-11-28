@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/14 11:03:24 by gvico             #+#    #+#             */
-/*   Updated: 2018/11/28 11:12:24 by gvico            ###   ########.fr       */
+/*   Created: 2018/06/14 13:57:01 by gvico             #+#    #+#             */
+/*   Updated: 2018/07/04 14:01:09 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFF_SIZE 32
-# include <unistd.h>
-# include "libft.h"
+char	*ft_strnew(size_t size)
+{
+	char *mem;
 
-int	get_next_line(const int fd, char **line);
-
-#endif
+	mem = malloc(sizeof(char) * (size + 1));
+	if (mem == NULL)
+		return (NULL);
+	ft_bzero(mem, size + 1);
+	return (mem);
+}

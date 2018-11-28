@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/14 11:03:18 by gvico             #+#    #+#             */
-/*   Updated: 2018/11/28 13:46:55 by gvico            ###   ########.fr       */
+/*   Created: 2018/06/13 14:40:29 by gvico             #+#    #+#             */
+/*   Updated: 2018/07/09 15:20:54 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
-int	get_next_line(const int fd, char **line)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	int			i;
-	char		buf[BUFF_SIZE + 1];
-	static char	rest[BUFF_SIZE + 1];
+	size_t	i;
+	size_t	j;
 
-	if (fd == -1 || read(fd, buffer, 0) < 0 || !line)
-		return (-1);
-	if (*rest)
-		ft_strcpy(*line, rest);
-/*
+	if (needle[0] == '\0')
+		return ((char *)haystack);
 	i = 0;
-	read(fd, buf, BUFF_SIZE);
-	while (buf[i] != '\n' && i < BUFF_SIZE)
+	while (haystack[i] != '\0' && i < len)
 	{
-		**line = buf[i];
+		j = 0;
+		while (needle[j] != '\0')
+		{
+			if (i + j >= len || haystack[i + j] != needle[j])
+				break ;
+			j++;
+		}
+		if (needle[j] == '\0')
+			return ((char *)(haystack + i));
 		i++;
-		*line++;
 	}
-*/
+	return (NULL);
 }

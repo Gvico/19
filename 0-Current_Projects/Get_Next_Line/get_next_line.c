@@ -12,6 +12,8 @@
 
 #include "get_next_line.h"
 
+// Penser à copier mon .vimrc pour Linux
+
 char	*read_fd(char *line, char *rest)
 {
 	char		*buf;
@@ -22,21 +24,21 @@ char	*read_fd(char *line, char *rest)
 	while ()
 	{
 		i = 0;
-		ft_strclr(buf);
+		ft_strclr(buf); // Fin de la fonction
 		if ((read(fd, buf, BUFF_SIZE)) == -1)
 			return (NULL);
 		while (buf[i] != '\n' && buf[i] != '\0' && buf[i] != EOF)
 			i++;
 		ft_strncat(line, buf, i);
 		// ft_strsub ?
+		// retourner buf à l'index i ?
 	}
 }
 
 int		get_next_line(const int fd, char **line)
 {
 	int			i;
-	// char		buf[BUFF_SIZE + 1];
-	static char	rest[BUFF_SIZE + 1];
+	static char	*rest = ft_strnew(BUFF_SIZE + 1);
 
 	if (fd == -1 || read(fd, buf, 0) < 0 || !line)
 		return (-1);

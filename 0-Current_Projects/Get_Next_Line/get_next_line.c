@@ -6,13 +6,11 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 11:03:18 by gvico             #+#    #+#             */
-/*   Updated: 2018/11/30 13:33:48 by gvico            ###   ########.fr       */
+/*   Updated: 2018/12/03 14:44:15 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-// Penser à copier mon .vimrc pour Linux
 
 char	*read_fd(char *line, char *rest)
 {

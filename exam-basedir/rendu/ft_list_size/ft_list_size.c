@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 15:21:40 by gvico             #+#    #+#             */
-/*   Updated: 2018/12/05 15:23:08 by gvico            ###   ########.fr       */
+/*   Updated: 2018/12/05 15:27:29 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_list_size(t_list *begin_list)
 	int		count;
 	t_list	*list;
 
-	i = 0;
+	count = 0;
 	list = begin_list;
 	while (list)
 	{

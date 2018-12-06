@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 11:03:18 by gvico             #+#    #+#             */
-/*   Updated: 2018/12/03 14:44:15 by gvico            ###   ########.fr       */
+/*   Updated: 2018/12/06 13:16:17 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ char	*read_fd(char *line, char *rest)
 	while ()
 	{
 		i = 0;
-		ft_strclr(buf); // Fin de la fonction
 		if ((read(fd, buf, BUFF_SIZE)) == -1)
 			return (NULL);
 		while (buf[i] != '\n' && buf[i] != '\0' && buf[i] != EOF)
@@ -30,6 +29,7 @@ char	*read_fd(char *line, char *rest)
 		ft_strncat(line, buf, i);
 		// ft_strsub ?
 		// retourner buf à l'index i ?
+		ft_strclr(buf);
 	}
 }
 

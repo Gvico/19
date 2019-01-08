@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 		nbrUsr = -1;
 		nbrMax = -1;
 		while (!(nbrUsr == 0 || nbrUsr == 1))
-		{	
+		{
 			printf("Voulez-vous rejouer (1/0) ? ");
 			scanf("%d", &nbrUsr);
 		}

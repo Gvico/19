@@ -11,10 +11,11 @@ int	main(int argc, char **argv)
 
 	nbrUsr = 1;
 	nbrMax = -1;
-	coups = 0;
 	srand(time(NULL));
+	printf("\nBienvenue dans le jeu du +/- !\n");
 	while (nbrUsr != 0)
 	{
+		coups = 0;
 		while (nbrMax < 0)
 		{
 			printf("\nChoisissez un niveau !\n1 = entre 1 et 100\n2 = entre 1 et 1000\n3 = entre 1 et 10000\n\nVotre niveau ? ");
@@ -47,5 +48,6 @@ int	main(int argc, char **argv)
 			scanf("%d", &nbrUsr);
 		}
 	}
+	printf("\nAu revoir !\n");
 	return (0);
 }

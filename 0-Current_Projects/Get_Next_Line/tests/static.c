@@ -1,6 +1,6 @@
 #include <unistd.h>
 
-char	test()
+char	test(void)
 {
 	static char	test[8];
 
@@ -11,7 +11,7 @@ char	test()
 	return (test[3]);
 }
 
-int		main()
+int		main(void)
 {
 	char	buf;
 

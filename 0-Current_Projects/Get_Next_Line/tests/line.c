@@ -6,7 +6,8 @@ void	test(char **line)
 	char	*ptr;
 
 	ptr = *line;
-	(*line)[2] = 'G';
+	(*line)[2] = 'V';
+	ptr[2] = 'G';
 }
 
 int		main(void)

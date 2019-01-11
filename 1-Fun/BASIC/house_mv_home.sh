@@ -1,2 +1,2 @@
 #!/bin/bash
-mv ~/19/gvico/1/BASIC/*.BAS ~/
+mv ~/19/gvico/1-Fun/BASIC/*.BAS ~/

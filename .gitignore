@@ -51,5 +51,8 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+# Editor Temp files
+*.swp
+
 # That goddamn macOS annoying file
 .DS_Store

@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 11:32:56 by gvico             #+#    #+#             */
-/*   Updated: 2019/01/14 13:03:58 by gvico            ###   ########.fr       */
+/*   Updated: 2019/01/14 15:26:32 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int		errcheck(int fd, char **rest, char **line)
 
 char	*read_fd(char *rest, int fd)
 {
+		int		ret
 		char	buff[BUFF_SIZE + 1];
-		int		ret;
 
 		while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
 		{
@@ -35,11 +35,22 @@ char	*read_fd(char *rest, int fd)
 		return (rest);
 }
 
-int		get_next_line(int const fd, char **line)
+int		get_next_line(const int fd, char **line)
 {
-	static char	*rest;
 	int			i;
+	static char	*rest;
 
 	if (errcheck(fd, &rest, line) == -1)
 		return (-1);
+	if (*rest)
+		ft_strcpy(*line, rest);
+	rest = read_fd(rest, fd);
+	i = 0;
+	if (str[i])
+	{
+		// Bloup Bloup
+	}
+	else
+		(*line) = ft_strdup("");
+	return (0);
 }

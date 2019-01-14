@@ -5,46 +5,41 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/14 11:03:18 by gvico             #+#    #+#             */
-/*   Updated: 2019/01/11 14:35:45 by gvico            ###   ########.fr       */
+/*   Created: 2019/01/14 11:32:56 by gvico             #+#    #+#             */
+/*   Updated: 2019/01/14 13:03:58 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*read_fd(char *line, char *rest)
+int		errcheck(int fd, char **rest, char **line)
 {
-	char		*buf;
-	int			i;
-
-	if ((buf = ft_strnew(BUFF_SIZE + 1)) == NULL)
-		return (NULL);
-	while ()
-	{
-		i = 0;
-		if ((read(fd, buf, BUFF_SIZE)) == -1)
-			return (NULL);
-		while (buf[i] != '\n' && buf[i] != NULL && buf[i] != EOF)
-			i++;
-		ft_strncat(line, buf, i);
-		// ft_strsub ?
-		// retourner buf à l'index i ?
-		// ft_strjoin
-		ft_strclr(buf);
-	}
+	if (fd == -1 || line == NULL)
+		return (-1);
+	if (*rest = NULL)
+		if ((rest = (char *)malloc(sizeof(char) * (BUFF_SIZE + 1))) = NULL)
+			return (-1);
+	return (0);
 }
 
-int		get_next_line(const int fd, char **line)
+char	*read_fd(char *rest, int fd)
 {
-	int			i;
-	static char	*rest = ft_strnew(BUFF_SIZE + 1);
+		char	buff[BUFF_SIZE + 1];
+		int		ret;
 
-	if (fd == -1 || read(fd, buf, 0) < 0 || !line)
+		while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
+		{
+			buff[ret] = '\0';
+			rest = ft_strjoin(rest, buff);
+		}
+		return (rest);
+}
+
+int		get_next_line(int const fd, char **line)
+{
+	static char	*rest;
+	int			i;
+
+	if (errcheck(fd, &rest, line) == -1)
 		return (-1);
-	if (*rest)
-	{
-		ft_strcat(*line, rest);
-		ft_strclr(rest);
-	}
-	// if ((rest = read_fd(*line, rest)) == NULL)
 }

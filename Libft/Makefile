@@ -6,7 +6,7 @@
 #    By: gvico <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/20 13:55:54 by gvico             #+#    #+#              #
-#    Updated: 2019/01/10 09:15:42 by gvico            ###   ########.fr        #
+#    Updated: 2019/01/15 09:45:10 by gvico            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SRCS = ./ft_memset.c ./ft_bzero.c ./ft_memcpy.c ./ft_memccpy.c ./ft_memmove.c \
 	   ./ft_strsplit.c ./ft_itoa.c ./ft_putchar.c ./ft_putstr.c ./ft_putendl.c \
 	   ./ft_putnbr.c ./ft_putchar_fd.c ./ft_putstr_fd.c ./ft_putendl_fd.c \
 	   ./ft_putnbr_fd.c ./ft_lstnew.c ./ft_lstdelone.c ./ft_lstdel.c \
-	   ./ft_lstadd.c ./ft_lstiter.c ./ft_lstmap.c ./ft_numlen.c ./ft_wordcount.c
+	   ./ft_lstadd.c ./ft_lstiter.c ./ft_lstmap.c ./ft_numlen.c \
+	   ./ft_wordcount.c ./ft_quicksort.c ./ft_swpint.c
 
 HEAD = ./libft.h
 

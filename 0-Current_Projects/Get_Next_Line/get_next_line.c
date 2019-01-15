@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 11:32:56 by gvico             #+#    #+#             */
-/*   Updated: 2019/01/14 15:26:32 by gvico            ###   ########.fr       */
+/*   Updated: 2019/01/15 11:22:36 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ int		errcheck(int fd, char **rest, char **line)
 {
 	if (fd == -1 || line == NULL)
 		return (-1);
-	if (*rest = NULL)
-		if ((rest = (char *)malloc(sizeof(char) * (BUFF_SIZE + 1))) = NULL)
+	if (*rest == NULL)
+		if ((*rest = (char *)malloc(sizeof(char) * (BUFF_SIZE + 1))) == NULL)
 			return (-1);
 	return (0);
 }
 
 char	*read_fd(char *rest, int fd)
 {
-		int		ret
+		int		ret;
 		char	buff[BUFF_SIZE + 1];
 
 		while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
@@ -46,9 +46,18 @@ int		get_next_line(const int fd, char **line)
 		ft_strcpy(*line, rest);
 	rest = read_fd(rest, fd);
 	i = 0;
-	if (str[i])
+	if (rest[i])
 	{
-		// Bloup Bloup
+		while (rest[i] && rest[i] != '\n')
+			i++;
+		if (i == 0)
+			(*line) = ft_strdup("");
+		else
+		{
+			(*line) = ft_strsub(rest, 0, i);
+			rest = &rest[i + 1];
+		}
+		return (1);
 	}
 	else
 		(*line) = ft_strdup("");

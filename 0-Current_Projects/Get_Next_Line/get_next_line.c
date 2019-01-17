@@ -6,11 +6,31 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 11:55:02 by gvico             #+#    #+#             */
-/*   Updated: 2019/01/15 13:30:25 by gvico            ###   ########.fr       */
+/*   Updated: 2019/01/17 12:18:40 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+static int		ft_cpytochr(char **dst, const char *src, char c)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	while (src[i] != c)
+		i++;
+	if (!(*dst = ft_strnew(i)))
+		return (0);
+	len = i;
+	i = 0;
+	while (i < len)
+	{
+		(*dst)[i] = src[i];
+		i++;
+	}
+	return (len);
+}
 
 static t_list	*get_file(t_list **file, int fd)
 {
@@ -21,7 +41,7 @@ static t_list	*get_file(t_list **file, int fd)
 	{
 		if ((int)tmp->content_size == fd)
 			return (tmp);
-		tmp = tmp-> next;
+		tmp = tmp->next;
 	}
 	tmp = ft_lstnew("\0", fd);
 	ft_lstadd(file, tmp);
@@ -40,4 +60,20 @@ int				get_next_line(const int fd, char **line)
 	if ((fd < 0 || !line || read(fd, buf, 0) < 0))
 		return (-1);
 	curr = get_file(&file, fd);
+	MEMCHK(*line = ft_strnew(1));
+	while (ret = read(fd, buf, BUFF_SIZE))
+	{
+		buf[ret] = '\0';
+		MEMCHK((curr->content = ft_strjoin(curr->content, buf)));
+		if (ft_strchr(buf, '\n'))
+			break ;
+	}
+	if (ret < BUFF_SIZE && !ft_strlen(curr->content))
+		return (0);
+	i = ft_cpytochr(*line, curr->content, '\n');
+	if (i < (int)ft_strlen(curr->content))
+		curr->content += (i + 1);
+	else
+		ft_strclr(curr->content);
+	return (1);
 }

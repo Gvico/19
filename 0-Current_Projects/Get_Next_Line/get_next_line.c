@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 11:55:02 by gvico             #+#    #+#             */
-/*   Updated: 2019/01/17 13:00:16 by gvico            ###   ########.fr       */
+/*   Updated: 2019/01/18 09:45:38 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,24 @@
 
 static int		ft_cpytochr(char **dst, const char *src, char c)
 {
-	int	i;
-	int	len;
+	int		i;
+	int		count;
+	int		pos;
 
-	i = 0;
+	i = -1;
+	count = 0;
 	while (src[i] != c)
 		i++;
+	pos = i;
 	if (!(*dst = ft_strnew(i)))
 		return (0);
-	len = i;
-	i = 0;
-	while (i < len)
+	while (src[count] && count < i)
 	{
-		(*dst)[i] = src[i];
-		i++;
+		if (!(*dst = ft_strjoinch(*dst, src[count])))
+			return (0);
+		count++;
 	}
-	return (len);
+	return (pos);
 }
 
 static t_list	*get_file(t_list **file, int fd)

@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 11:55:02 by gvico             #+#    #+#             */
-/*   Updated: 2019/01/18 09:45:38 by gvico            ###   ########.fr       */
+/*   Updated: 2019/01/28 10:13:41 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int		ft_cpytochr(char **dst, const char *src, char c)
 	int		count;
 	int		pos;
 
-	i = -1;
+	i = 0;
 	count = 0;
 	while (src[i] != c)
 		i++;
@@ -27,7 +27,7 @@ static int		ft_cpytochr(char **dst, const char *src, char c)
 		return (0);
 	while (src[count] && count < i)
 	{
-		if (!(*dst = ft_strjoinch(*dst, src[count])))
+		if (!(*dst = ft_strjoinchr(*dst, src[count])))
 			return (0);
 		count++;
 	}

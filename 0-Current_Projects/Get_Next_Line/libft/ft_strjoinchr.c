@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_list.c                                        :+:      :+:    :+:   */
+/*   ft_strjoinchr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/15 09:51:50 by gvico             #+#    #+#             */
-/*   Updated: 2019/01/21 13:43:46 by gvico            ###   ########.fr       */
+/*   Created: 2019/01/28 10:10:27 by gvico             #+#    #+#             */
+/*   Updated: 2019/01/28 10:58:21 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list.h"
+#include "libft.h"
 
-t_list	*sort_list(t_list *lst, int (*cmp)(int, int))
+char		*ft_strjoinchr(char const *s1, char const c)
 {
-	int		buff;
-	t_list	*tmp;
+	char	*new;
+	size_t	i;
+	size_t	len;
 
-	tmp = lst;
-	while (lst->next)
-	{
-		if (((*cmp)(lst->data, lst->next->data)) == 0)
-		{
-			buff = lst->data;
-			lst->data = lst->next->data;
-			lst->next->data = buff;
-			lst = tmp;
-		}
-		else
-			lst = lst->next;
-	}
-	lst = tmp;
-	return (lst);
+	if (!s1 || !c)
+		return (NULL);
+	len = ft_strlen(s1);
+	new = ft_strnew(len + 1);
+	if (!new)
+		return (NULL);
+	i = -1;
+	while (++i < len)
+		*(new + 1) = *(s1 + i);
+	*(new + 1) = c;
+	return (new);
 }

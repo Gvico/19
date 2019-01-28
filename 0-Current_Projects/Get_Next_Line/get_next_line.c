@@ -6,33 +6,11 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 11:55:02 by gvico             #+#    #+#             */
-/*   Updated: 2019/01/28 10:13:41 by gvico            ###   ########.fr       */
+/*   Updated: 2019/01/28 12:02:36 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-static int		ft_cpytochr(char **dst, const char *src, char c)
-{
-	int		i;
-	int		count;
-	int		pos;
-
-	i = 0;
-	count = 0;
-	while (src[i] != c)
-		i++;
-	pos = i;
-	if (!(*dst = ft_strnew(i)))
-		return (0);
-	while (src[count] && count < i)
-	{
-		if (!(*dst = ft_strjoinchr(*dst, src[count])))
-			return (0);
-		count++;
-	}
-	return (pos);
-}
 
 static t_list	*get_file(t_list **file, int fd)
 {

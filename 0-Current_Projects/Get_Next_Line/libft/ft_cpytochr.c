@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_cpytochr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/14 11:03:24 by gvico             #+#    #+#             */
-/*   Updated: 2019/01/28 12:15:44 by gvico            ###   ########.fr       */
+/*   Created: 2019/01/28 12:00:23 by gvico             #+#    #+#             */
+/*   Updated: 2019/01/28 12:01:54 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include "libft/libft.h"
+#include "libft.h"
 
-# define BUFF_SIZE 32
-# define MEMCHK(x) if (!x) return (-1);
+int		ft_cpytochr(char **dst, const char *src, char c)
+{
+	int		i;
+	int		count;
+	int		pos;
 
-int	get_next_line(const int fd, char **line);
-
-#endif
+	i = 0;
+	count = 0;
+	while (src[i] != c)
+		i++;
+	pos = i;
+	if (!(*dst = ft_strnew(i)))
+		return (0);
+	while (src[count] && count < i)
+	{
+		if (!(*dst = ft_strjoinchr(*dst, src[count])))
+			return (0);
+		count++;
+	}
+	return (pos);
+}

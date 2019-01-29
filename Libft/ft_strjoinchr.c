@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cpytochr.c                                      :+:      :+:    :+:   */
+/*   ft_strjoinchr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/28 12:00:23 by gvico             #+#    #+#             */
-/*   Updated: 2019/01/29 16:04:26 by gvico            ###   ########.fr       */
+/*   Created: 2019/01/28 10:10:27 by gvico             #+#    #+#             */
+/*   Updated: 2019/01/28 10:58:21 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_cpytochr(char **dst, const char *src, char c)
+char		*ft_strjoinchr(char const *s1, char const c)
 {
-	int		i;
-	int		count;
-	int		pos;
+	char	*new;
+	size_t	i;
+	size_t	len;
 
-	i = 0;
-	count = 0;
-	while (src[i] && src[i] != c)
-		i++;
-	pos = i;
-	if (!(*dst = ft_strnew(i)))
-		return (0);
-	while (src[count] && count < i)
-	{
-		if (!(*dst = ft_strjoinchr(*dst, src[count])))
-			return (0);
-		count++;
-	}
-	return (pos);
+	if (!s1 || !c)
+		return (NULL);
+	len = ft_strlen(s1);
+	new = ft_strnew(len + 1);
+	if (!new)
+		return (NULL);
+	i = -1;
+	while (++i < len)
+		*(new + 1) = *(s1 + i);
+	*(new + 1) = c;
+	return (new);
 }

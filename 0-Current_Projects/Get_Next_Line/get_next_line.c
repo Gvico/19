@@ -14,7 +14,7 @@
 
 static t_list	*get_file(t_list **file, int fd)
 {
-	t_list			*tmp;
+	t_list				*tmp;
 
 	tmp = *file;
 	while (tmp)
@@ -31,11 +31,11 @@ static t_list	*get_file(t_list **file, int fd)
 
 int				get_next_line(const int fd, char **line)
 {
-	char			buf[BUFF_SIZE + 1];
+	int						i;
+	int						ret;
+	char					buf[BUFF_SIZE + 1];
 	static t_list	*file;
-	int				i;
-	int				ret;
-	t_list			*curr;
+	t_list				*curr;
 
 	if ((fd < 0 || !line || read(fd, buf, 0) < 0))
 		return (-1);

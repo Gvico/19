@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 09:22:03 by gvico             #+#    #+#             */
-/*   Updated: 2019/01/15 09:43:35 by gvico            ###   ########.fr       */
+/*   Updated: 2019/02/07 12:59:03 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ static int	qs_partition(int *tab, int start, int end)
 		if (tab[j] <= piv)
 		{
 			i++;
-			ft_swpint(&tab[i], &tab[j]);
+			ft_intswp(&tab[i], &tab[j]);
 		}
 		j++;
 	}
-	ft_swpint(&tab[i + 1], &tab[j]);
+	ft_intswp(&tab[i + 1], &tab[j]);
 	return (i + 1);
 }
 

@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cpytochr.c                                      :+:      :+:    :+:   */
+/*   ft_intswp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/28 12:00:23 by gvico             #+#    #+#             */
-/*   Updated: 2019/01/29 16:04:26 by gvico            ###   ########.fr       */
+/*   Created: 2019/01/15 09:33:54 by gvico             #+#    #+#             */
+/*   Updated: 2019/02/07 12:27:30 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_cpytochr(char **dst, const char *src, char c)
+void	ft_intswp(int *i, int *j)
 {
-	int		i;
-	int		count;
-	int		pos;
+	int	buf;
 
-	i = 0;
-	count = 0;
-	while (src[i] && src[i] != c)
-		i++;
-	pos = i;
-	if (!(*dst = ft_strnew(i)))
-		return (0);
-	while (src[count] && count < i)
-	{
-		if (!(*dst = ft_strjoinchr(*dst, src[count])))
-			return (0);
-		count++;
-	}
-	return (pos);
+	buf = *i;
+	*i = *j;
+	*j = buf;
 }

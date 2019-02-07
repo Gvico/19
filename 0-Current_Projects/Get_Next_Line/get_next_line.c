@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 11:55:02 by gvico             #+#    #+#             */
-/*   Updated: 2019/01/28 12:02:36 by gvico            ###   ########.fr       */
+/*   Updated: 2019/02/07 13:03:23 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 
 static t_list	*get_file(t_list **file, int fd)
 {
-	t_list				*tmp;
+	t_list			*lst;
 
-	tmp = *file;
-	while (tmp)
+	lst = *file;
+	while (lst)
 	{
-		if ((int)tmp->content_size == fd)
-			return (tmp);
-		tmp = tmp->next;
+		if ((int)lst->content_size == fd)
+			return (lst);
+		lst = lst->next;
 	}
-	tmp = ft_lstnew("\0", fd);
-	ft_lstadd(file, tmp);
-	tmp = *file;
-	return (tmp);
+	lst = ft_lstnew("\0", fd);
+	ft_lstadd(file, lst);
+	lst = *file;
+	return (lst);
 }
 
 int				get_next_line(const int fd, char **line)
 {
-	int						i;
-	int						ret;
-	char					buf[BUFF_SIZE + 1];
+	int				i;
+	int				ret;
+	char			buf[BUFF_SIZE + 1];
 	static t_list	*file;
-	t_list				*curr;
+	t_list			*curr;
 
 	if ((fd < 0 || !line || read(fd, buf, 0) < 0))
 		return (-1);
@@ -50,7 +50,7 @@ int				get_next_line(const int fd, char **line)
 	}
 	if (ret < BUFF_SIZE && !ft_strlen(curr->content))
 		return (0);
-	i = ft_cpytochr(line, curr->content, '\n');
+	i = ft_strcpyuntil(line, curr->content, '\n');
 	if (i < (int)ft_strlen(curr->content))
 		curr->content += (i + 1);
 	else

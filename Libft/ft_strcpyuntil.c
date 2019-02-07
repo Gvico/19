@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoinchr.c                                    :+:      :+:    :+:   */
+/*   ft_strcpyuntil.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/28 10:10:27 by gvico             #+#    #+#             */
-/*   Updated: 2019/01/28 10:58:21 by gvico            ###   ########.fr       */
+/*   Created: 2019/02/07 12:29:55 by gvico             #+#    #+#             */
+/*   Updated: 2019/02/07 12:32:05 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strjoinchr(char const *s1, char const c)
+int	ft_strcpyuntil(char **dst, char const *src, char c)
 {
-	char	*new;
-	size_t	i;
-	size_t	len;
+	int		len;
+	int		i;
+	char	*str;
 
-	if (!s1 || !c)
-		return (NULL);
-	len = ft_strlen(s1);
-	new = ft_strnew(len + 1);
-	if (!new)
-		return (NULL);
-	i = -1;
-	while (++i < len)
-		*(new + 1) = *(s1 + i);
-	*(new + 1) = c;
-	return (new);
+	len = 0;
+	while (src[len] && src[len] != c)
+		len++;
+	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
+		return (0);
+	i = 0;
+	while (i < len)
+	{
+		str[i] = src[i];
+		i++;
+	}
+	str[i] = '\0';
+	if (!(*dst = ft_strjoin(*dst, str)))
+		return (0);
+	return (len);
 }

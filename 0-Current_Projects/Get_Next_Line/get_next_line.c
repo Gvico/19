@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 11:55:02 by gvico             #+#    #+#             */
-/*   Updated: 2019/02/07 13:03:23 by gvico            ###   ########.fr       */
+/*   Updated: 2019/02/08 13:55:34 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int				get_next_line(const int fd, char **line)
 	static t_list	*file;
 	t_list			*curr;
 
-	if ((fd < 0 || !line || read(fd, buf, 0) < 0))
+	if (fd < 0 || !line || read(fd, buf, 0) < 0)
 		return (-1);
 	curr = get_file(&file, fd);
 	MEMCHK((*line = ft_strnew(1)));
@@ -48,7 +48,7 @@ int				get_next_line(const int fd, char **line)
 		if (ft_strchr(buf, '\n'))
 			break ;
 	}
-	if (ret < BUFF_SIZE && !ft_strlen(curr->content))
+	if (!ft_strlen(curr->content))
 		return (0);
 	i = ft_strcpyuntil(line, curr->content, '\n');
 	if (i < (int)ft_strlen(curr->content))

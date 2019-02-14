@@ -17,15 +17,15 @@ int	ft_wordcount(char const *s, char c)
 	size_t words;
 
 	words = 0;
-	while (*str)
+	while (*s)
 	{
-		while (*str == c)
-			str++;
-		if (*str && *str != c)
+		while (*s == c)
+			s++;
+		if (*s && *s != c)
 		{
 			words++;
-			while (*str && *str != c)
-				str++;
+			while (*s && *s != c)
+				s++;
 		}
 	}
 	return (words);

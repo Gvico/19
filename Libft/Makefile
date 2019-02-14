@@ -14,7 +14,7 @@ NAME = libft.a
 
 SRCS = $(shell ls | grep -E "ft_.+\.c")
 
-HEAD = ./libft.h
+HEAD = .
 
 OBJ = $(SRCS:.c=.o)
 

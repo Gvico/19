@@ -1,0 +1,3 @@
+La materiel faisant la liaison entre le reseau local et l'exterieur s'appelle "nat" (Network address translation), et son adresse est "10.60.1.1".
+
+En effet, un NAT est ce qui lie un reseau local au reste du monde, de plus les IP des appareils suivants ne ressemblent pas a celles du reseau local.

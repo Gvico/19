@@ -1,0 +1,7 @@
+Le path complet du fichier ou se trouve l'adresse IP du serveur DNS qu'on utilise est "/var/run/resolv.conf"
+
+En effet, la commande "ls -l /etc/resolv.conf" Donne la reponse suivante :
+
+lrwxr-xr-x  1 root  wheel  22 May  9  2018 /etc/resolv.conf -> ../var/run/resolv.conf
+
+Ce qui montre que "/etc/resolv.conf" est en fait un lien symbolique vers "/var/run/resolv.conf"

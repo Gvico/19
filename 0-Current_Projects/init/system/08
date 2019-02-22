@@ -1,0 +1,1 @@
+Le fichier contenant les cles RSA des machines autorisees a se connecter via SSH est par defaut "/root/.ssh/id_rsa".

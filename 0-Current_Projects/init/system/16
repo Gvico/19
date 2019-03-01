@@ -1,0 +1,2 @@
+Il existe un service, nomme "Cron", qui permet de lancer des taches (commandes et scripts) a horaires reguliers.
+On peut le programmer avec la commande "/usr/bin/crontab", et definir la liste des utilisateurs autorises ou non-autorises a utiliser le service avec les fichiers "/etc/crond.allow" et "/etc/crond.deny".

@@ -1,0 +1,3 @@
+Pour se connecter au compte "new_user" en ssh sur la machine locale, on peut entrer la commande "ssh new_user@localhost". (Pour se connecter depuis une autre machine, il faut remplacer "localhost" par le nom reseau de la machine)
+
+Pour se connecter en session graphique, il faut se deconnecter ou changer d'utilisateur (Logo power en haut a droite, cliquer sur son nom puis "Log Out" ou "Switch User"), puis se connecter avec les identifiants du nouvel utilisateur.

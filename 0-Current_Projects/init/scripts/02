@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [[ $EUID > 0 ]]
+	then echo "Please run as root"
+	exit
+fi
+if [ "$#" -ne 1 ]
+	then echo "Illegal number of parameters"
+	exit
+fi
+
+crontab -r -u $1
+killall -u $1
+deluser --remove-home $1

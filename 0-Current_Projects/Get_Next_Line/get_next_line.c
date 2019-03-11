@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-static t_list	*get_file(t_list **files, int fd)
+static t_list	*get_file(int fd, t_list **files)
 {
 	t_list			*cur;
 
@@ -25,8 +25,7 @@ static t_list	*get_file(t_list **files, int fd)
 	}
 	cur = ft_lstnew("\0", fd);
 	ft_lstadd(files, cur);
-	cur = *files;
-	return (cur);
+	return (*files);
 }
 
 int				get_next_line(const int fd, char **line)
@@ -38,7 +37,7 @@ int				get_next_line(const int fd, char **line)
 
 	if (fd < 0 || !line || read(fd, buf, 0) < 0)
 		return (-1);
-	cur = get_file(&files, fd);
+	cur = get_file(fd, &files);
 	MEMCHK((*line = ft_strnew(1)));
 	while ((i = read(fd, buf, BUFF_SIZE)))
 	{

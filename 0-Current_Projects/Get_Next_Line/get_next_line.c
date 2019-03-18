@@ -32,17 +32,18 @@ static t_list	*get_file(int fd)
 int				get_next_line(const int fd, char **line)
 {
 	int				i;
-	char			buf[BUFF_SIZE + 1];
+	char			*buf;
 	t_list			*cur;
 
+	MEMCHK(buf = (char *)(malloc(sizeof(char) * (BUFF_SIZE + 1))));
 	if (fd < 0 || !line || read(fd, buf, 0) < 0)
 		return (-1);
 	cur = get_file(fd);
-	MEMCHK((*line = ft_strnew(1)));
+	MEMCHK(*line = ft_strnew(1));
 	while ((i = read(fd, buf, BUFF_SIZE)))
 	{
 		buf[i] = '\0';
-		MEMCHK((cur->content = ft_strjoin(cur->content, buf)));
+		MEMCHK(cur->content = ft_strjoin(cur->content, buf));
 		if (ft_strchr(buf, '\n'))
 			break ;
 	}
@@ -53,5 +54,6 @@ int				get_next_line(const int fd, char **line)
 		cur->content += (i + 1);
 	else
 		ft_strclr(cur->content);
+	free(buf);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 11:08:43 by gvico             #+#    #+#             */
-/*   Updated: 2018/07/06 11:10:39 by gvico            ###   ########.fr       */
+/*   Updated: 2019/02/11 11:23:31 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,19 @@
 
 int	ft_wordcount(char const *s, char c)
 {
-	size_t i;
 	size_t words;
-	size_t len;
 
-	i = 0;
 	words = 0;
-	len = ft_strlen(s);
-	while (s[len] == c)
-		len--;
-	while (s[i] == c)
-		i++;
-	while (i < len)
+	while (*s)
 	{
-		while (s[i] != c)
-			i++;
-		words++;
-		while (s[i] == c)
-			i++;
+		while (*s == c)
+			s++;
+		if (*s && *s != c)
+		{
+			words++;
+			while (*s && *s != c)
+				s++;
+		}
 	}
 	return (words);
 }

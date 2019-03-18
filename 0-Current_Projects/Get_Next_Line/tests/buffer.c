@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   buffer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/14 11:03:24 by gvico             #+#    #+#             */
-/*   Updated: 2019/01/28 12:15:44 by gvico            ###   ########.fr       */
+/*   Created: 2019/03/18 11:37:09 by gvico             #+#    #+#             */
+/*   Updated: 2019/03/18 11:47:44 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include "libft/libft.h"
+/*
+** Test file
+*/
 
-# define BUFF_SIZE 10000000
-# define MEMCHK(x) if (!x) return (-1);
+int	main(void)
+{
+	static char	buf[10000000];
 
-int	get_next_line(const int fd, char **line);
-
-#endif
+	buf[2156] = 'I';
+	return (0);
+}

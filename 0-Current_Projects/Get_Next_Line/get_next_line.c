@@ -50,10 +50,8 @@ int				get_next_line(const int fd, char **line)
 	if (!ft_strlen(cur->content))
 		return (0);
 	i = ft_strcpyuntil(line, cur->content, '\n');
-	if (i < (int)ft_strlen(cur->content))
-		cur->content += (i + 1);
-	else
-		ft_strclr(cur->content);
+	(i < (int)ft_strlen(cur->content)) ? cur->content += (i + 1)
+	: ft_strclr(cur->content);
 	free(buf);
 	return (1);
 }

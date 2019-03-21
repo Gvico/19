@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 11:55:02 by gvico             #+#    #+#             */
-/*   Updated: 2019/02/14 12:33:38 by gvico            ###   ########.fr       */
+/*   Updated: 2019/03/21 13:58:59 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int				get_next_line(const int fd, char **line)
 	while ((i = read(fd, buf, BUFF_SIZE)))
 	{
 		buf[i] = '\0';
-		MEMCHK(cur->content = ft_strjoin(cur->content, buf));
+		MEMCHK(cur->content = ft_strsjoin(cur->content, buf));
 		if (ft_strchr(buf, '\n'))
 			break ;
 	}

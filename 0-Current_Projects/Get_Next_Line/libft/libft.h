@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 11:20:38 by gvico             #+#    #+#             */
-/*   Updated: 2019/03/15 15:14:29 by gvico            ###   ########.fr       */
+/*   Updated: 2019/03/21 10:27:23 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ int				ft_wordcount(char const *s, char c);
 void			ft_quicksort(int *tab, int start, int end);
 void			ft_swap(int *a, int *b);
 int				ft_strcpyuntil(char **dst, char const *src, char c);
+char			*ft_strsjoin(char *s1, char *s2);
 
 #endif

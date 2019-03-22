@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 13:52:37 by gvico             #+#    #+#             */
-/*   Updated: 2018/06/13 13:57:42 by gvico            ###   ########.fr       */
+/*   Updated: 2019/03/22 10:47:23 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,5 @@ char	*ft_strchr(const char *s, int c)
 		else
 			s++;
 	}
-	if (*s == (char)c)
-		return ((char *)s);
-	else
-		return (NULL);
+	return ((*s == (char)c) ? (char *)s : NULL);
 }

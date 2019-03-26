@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 11:03:24 by gvico             #+#    #+#             */
-/*   Updated: 2019/03/21 12:34:09 by gvico            ###   ########.fr       */
+/*   Updated: 2019/03/26 14:28:27 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@
 # define BUFF_SIZE 32
 # define MEMCHK(x) if (!(x)) return (-1);
 
-int	get_next_line(const int fd, char **line);
+typedef struct	s_fdlist
+{
+	char			*content;
+	int				fd;
+	int				ismalloc;
+	struct s_fdlist	*next;
+}				t_fdlist;
+
+int				get_next_line(const int fd, char **line);
 
 #endif

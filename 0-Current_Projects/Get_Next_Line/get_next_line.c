@@ -6,26 +6,30 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 11:55:02 by gvico             #+#    #+#             */
-/*   Updated: 2019/03/22 10:33:41 by gvico            ###   ########.fr       */
+/*   Updated: 2019/03/26 14:26:52 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static t_list	*get_file(int fd)
+static t_fdlist	*get_file(int fd)
 {
-	t_list			*cur;
-	static t_list	*files;
+	t_fdlist			*cur;
+	static t_fdlist		*files;
 
 	cur = files;
 	while (cur)
 	{
-		if ((int)cur->content_size == fd)
+		if (cur->fd == fd)
 			return (cur);
 		cur = cur->next;
 	}
-	cur = ft_lstnew("\0", fd);
-	ft_lstadd(&files, cur);
+	cur->content = (char *)malloc(sizeof(char) * 1);
+	(cur->content)[0] = '\0';
+	cur->fd = fd;
+	cur->ismalloc = 1;
+	cur->next = files;
+	files = cur;
 	return (files);
 }
 
@@ -33,7 +37,7 @@ int				get_next_line(const int fd, char **line)
 {
 	int				i;
 	char			*buf;
-	t_list			*cur;
+	t_fdlist		*cur;
 
 	MEMCHK(buf = (char *)malloc(sizeof(char) * (BUFF_SIZE + 1)));
 	if (fd < 0 || !line || read(fd, buf, 0) < 0)
@@ -43,7 +47,8 @@ int				get_next_line(const int fd, char **line)
 	while ((i = read(fd, buf, BUFF_SIZE)))
 	{
 		buf[i] = '\0';
-		MEMCHK(cur->content = ft_strsjoin(cur->content, buf));
+		if (cur->ismalloc == 1)
+			MEMCHK(cur->content = ft_strsjoin(cur->content, buf));
 		if (ft_strchr(buf, '\n'))
 			break ;
 	}

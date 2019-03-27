@@ -12,6 +12,23 @@
 
 #include "get_next_line.h"
 
+static char		*cropstr(char *str, int i)
+{
+	char			*new;
+	int				len;
+
+	len = 0;
+	while (str[i + len])
+		len++;
+	if (!(new = (char *)malloc(sizeof(char) * len)))
+		return (NULL);
+	new[len] = '\0';
+	while (--len >= 0)
+		new[len] = str[i + len];
+	free(str);
+	return (new);
+}
+
 static t_list	*get_file(int fd)
 {
 	t_list			*cur;
@@ -50,7 +67,8 @@ int				get_next_line(const int fd, char **line)
 	if (!ft_strlen(cur->content))
 		return (0);
 	i = ft_strcpyuntil(line, cur->content, '\n');
-	(i < (int)ft_strlen(cur->content)) ? cur->content += (i + 1)
+	(i < (int)ft_strlen(cur->content))
+	? cur->content = cropstr(cur->content, i + 1)
 	: ft_strclr(cur->content);
 	free(buf);
 	return (1);

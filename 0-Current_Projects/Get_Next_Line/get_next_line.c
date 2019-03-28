@@ -20,7 +20,7 @@ static char		*cropstr(char *str, int i)
 	len = 0;
 	while (str[i + len])
 		len++;
-	if (!(new = (char *)malloc(sizeof(char) * len)))
+	if (!(new = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	new[len] = '\0';
 	while (--len >= 0)

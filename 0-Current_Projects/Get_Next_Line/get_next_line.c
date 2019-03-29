@@ -66,7 +66,7 @@ int				get_next_line(const int fd, char **line)
 	}
 	if (!ft_strlen(cur->content))
 		return (0);
-	i = ft_strcpyuntil(line, cur->content, '\n');
+	i = ft_strcjoin(line, cur->content, '\n');
 	(i < (int)ft_strlen(cur->content))
 	? cur->content = cropstr(cur->content, i + 1)
 	: ft_strclr(cur->content);

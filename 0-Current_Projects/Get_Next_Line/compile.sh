@@ -5,3 +5,4 @@ clang -Wall -Wextra -Werror -I libft/includes -o get_next_line.o -c get_next_lin
 clang -Wall -Wextra -Werror -I libft/includes -o main.o -c main.c
 clang -o a.out main.o get_next_line.o -I libft/includes -L libft/ -lft
 make -C libft/ fclean
+rm *.o

@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 13:03:12 by gvico             #+#    #+#             */
-/*   Updated: 2019/01/17 13:04:00 by gvico            ###   ########.fr       */
+/*   Updated: 2019/04/02 14:30:50 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int argc, char **argv)
 		printf("%s\n", line);
 		free(line);
 	}
+	free(line);
 	close(fd);
 	return (0);
 }

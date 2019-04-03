@@ -1,41 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   static.c                                           :+:      :+:    :+:   */
+/*   ft_cropstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/17 13:04:37 by gvico             #+#    #+#             */
-/*   Updated: 2019/01/17 13:04:50 by gvico            ###   ########.fr       */
+/*   Created: 2019/04/03 13:44:13 by gvico             #+#    #+#             */
+/*   Updated: 2019/04/03 13:49:05 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-/*
-**		Test file
-*/
-
-char	test(void)
+char		*ft_cropstr(char *str, int i)
 {
-	static char	test[8];
+	char			*new;
+	int				len;
 
-	if (!test[3])
-		test[3] = '0';
-	else
-		test[3]++;
-	return (test[3]);
-}
-
-int		main(void)
-{
-	char	buf;
-
-	buf = 'X';
-	while (buf != '9')
-	{
-		buf = test();
-		write(1, &buf, 1);
-	}
-	return (0);
+	len = 0;
+	while (str[i + len])
+		len++;
+	if (!(new = (char *)malloc(sizeof(char) * (len + 1))))
+		return (NULL);
+	new[len] = '\0';
+	while (--len >= 0)
+		new[len] = str[i + len];
+	free(str);
+	return (new);
 }

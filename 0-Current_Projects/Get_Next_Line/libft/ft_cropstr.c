@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcjoin.c                                      :+:      :+:    :+:   */
+/*   ft_cropstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/07 12:29:55 by gvico             #+#    #+#             */
-/*   Updated: 2019/04/01 14:51:24 by gvico            ###   ########.fr       */
+/*   Created: 2019/04/03 13:44:13 by gvico             #+#    #+#             */
+/*   Updated: 2019/04/03 13:49:05 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strcjoin(char **dst, char const *src, char c)
+char		*ft_cropstr(char *str, int i)
 {
-	int		len;
-	int		i;
-	char	*str;
+	char			*new;
+	int				len;
 
 	len = 0;
-	while (src[len] && src[len] != c)
+	while (str[i + len])
 		len++;
-	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
-		return (0);
-	i = -1;
-	while (++i < len)
-		str[i] = src[i];
-	str[i] = '\0';
-	if (!(*dst = ft_strsjoin(*dst, str)))
-		return (0);
+	if (!(new = (char *)malloc(sizeof(char) * (len + 1))))
+		return (NULL);
+	new[len] = '\0';
+	while (--len >= 0)
+		new[len] = str[i + len];
 	free(str);
-	return (len);
+	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 11:20:38 by gvico             #+#    #+#             */
-/*   Updated: 2019/03/29 12:05:53 by gvico            ###   ########.fr       */
+/*   Updated: 2019/04/03 13:50:11 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct	s_list
 	size_t			content_size;
 	struct s_list	*next;
 }				t_list;
+
 t_list			*ft_lstnew(void const *content, size_t content_size);
 void			ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void			ft_lstdel(t_list **alst, void (*del)(void *, size_t));
@@ -92,5 +93,6 @@ void			ft_quicksort(int *tab, int start, int end);
 void			ft_swap(int *a, int *b);
 int				ft_strcjoin(char **dst, char const *src, char c);
 char			*ft_strsjoin(char *s1, char *s2);
+char			*ft_cropstr(char *str, int i);
 
 #endif

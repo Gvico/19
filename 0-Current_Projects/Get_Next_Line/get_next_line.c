@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 11:55:02 by gvico             #+#    #+#             */
-/*   Updated: 2019/04/03 14:50:48 by gvico            ###   ########.fr       */
+/*   Updated: 2019/04/03 14:52:38 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int				free_file(int fd, t_list **files)
 	t_list			*tmp;
 
 	cur = *files;
-	while (cur->next && (cur->next->content_size != fd))
+	while (cur->next && ((int)cur->next->content_size != fd))
 		cur = cur->next;
 	if (cur->next->next)
 	{
@@ -68,7 +68,7 @@ int				get_next_line(const int fd, char **line)
 	}
 	free(buf);
 	if (!ft_strlen(cur->content))
-		return (free_file(fd, &line));
+		return (free_file(fd, &files));
 	i = ft_strcjoin(line, cur->content, '\n');
 	(i < (int)ft_strlen(cur->content))
 	? cur->content = ft_cropstr(cur->content, i + 1)

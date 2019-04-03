@@ -6,18 +6,17 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 11:55:02 by gvico             #+#    #+#             */
-/*   Updated: 2019/04/03 13:47:49 by gvico            ###   ########.fr       */
+/*   Updated: 2019/04/03 14:50:48 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static t_list	*get_file(int fd)
+static t_list	*get_file(int fd, t_list **files)
 {
 	t_list			*cur;
-	static t_list	*files;
 
-	cur = files;
+	cur = *files;
 	while (cur)
 	{
 		if ((int)cur->content_size == fd)
@@ -25,8 +24,27 @@ static t_list	*get_file(int fd)
 		cur = cur->next;
 	}
 	cur = ft_lstnew("\0", fd);
-	ft_lstadd(&files, cur);
-	return (files);
+	ft_lstadd(files, cur);
+	return (*files);
+}
+
+int				free_file(int fd, t_list **files)
+{
+	t_list			*cur;
+	t_list			*tmp;
+
+	cur = *files;
+	while (cur->next && (cur->next->content_size != fd))
+		cur = cur->next;
+	if (cur->next->next)
+	{
+		tmp = cur->next;
+		cur->next = cur->next->next;
+		free(tmp->content);
+		free(tmp);
+		return (0);
+	}
+	return (-1);
 }
 
 int				get_next_line(const int fd, char **line)
@@ -34,11 +52,12 @@ int				get_next_line(const int fd, char **line)
 	int				i;
 	char			*buf;
 	t_list			*cur;
+	static t_list	*files;
 
 	if (fd < 0 || !line || read(fd, NULL, 0) < 0)
 		return (-1);
 	MEMCHK(buf = (char *)malloc(sizeof(char) * (BUFF_SIZE + 1)));
-	cur = get_file(fd);
+	cur = get_file(fd, &files);
 	MEMCHK(*line = ft_strnew(1));
 	while ((i = read(fd, buf, BUFF_SIZE)))
 	{
@@ -49,7 +68,7 @@ int				get_next_line(const int fd, char **line)
 	}
 	free(buf);
 	if (!ft_strlen(cur->content))
-		return (0);
+		return (free_file(fd, &line));
 	i = ft_strcjoin(line, cur->content, '\n');
 	(i < (int)ft_strlen(cur->content))
 	? cur->content = ft_cropstr(cur->content, i + 1)

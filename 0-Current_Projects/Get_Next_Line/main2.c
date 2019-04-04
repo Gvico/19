@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 13:03:12 by gvico             #+#    #+#             */
-/*   Updated: 2019/04/03 10:43:15 by gvico            ###   ########.fr       */
+/*   Updated: 2019/04/04 10:23:25 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	free(line);
-	while (get_next_line(fd2, &line) && i < 30)
+	while (get_next_line(fd2, &line))
 	{
 		printf("%s\n", line);
 		free(line);

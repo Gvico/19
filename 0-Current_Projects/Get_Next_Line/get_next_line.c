@@ -12,12 +12,11 @@
 
 #include "get_next_line.h"
 
-static t_list	*get_file(int fd)
+static t_list	*get_file(int fd, t_list **files)
 {
 	t_list			*cur;
-	static t_list	*files;
 
-	cur = files;
+	cur = *files;
 	while (cur)
 	{
 		if ((int)cur->content_size == fd)
@@ -25,8 +24,32 @@ static t_list	*get_file(int fd)
 		cur = cur->next;
 	}
 	cur = ft_lstnew("\0", fd);
-	ft_lstadd(&files, cur);
-	return (files);
+	ft_lstadd(files, cur);
+	return (*files);
+}
+
+int				free_file(int fd, t_list **files)
+{
+	t_list		*cur;
+	t_list		*tmp;
+
+	if ((*files)->next)
+	{
+		cur = *files;
+		while (cur->next && (int)cur->next->content_size != fd)
+			cur = cur->next;
+		tmp = cur->next;
+		if (cur->next->next)
+			cur->next = cur->next->next;
+		else
+			cur->next = NULL;
+	}
+	else
+		tmp = *files;
+	free(tmp->content);
+	free(tmp);
+	tmp = NULL;
+	return (0);
 }
 
 int				get_next_line(const int fd, char **line)
@@ -34,11 +57,12 @@ int				get_next_line(const int fd, char **line)
 	int				i;
 	char			*buf;
 	t_list			*cur;
+	static t_list	*files;
 
 	if (fd < 0 || !line || read(fd, NULL, 0) < 0)
 		return (-1);
 	MEMCHK(buf = (char *)malloc(sizeof(char) * (BUFF_SIZE + 1)));
-	cur = get_file(fd);
+	cur = get_file(fd, &files);
 	MEMCHK(*line = ft_strnew(1));
 	while ((i = read(fd, buf, BUFF_SIZE)))
 	{
@@ -49,7 +73,7 @@ int				get_next_line(const int fd, char **line)
 	}
 	free(buf);
 	if (!ft_strlen(cur->content))
-		return (0);
+		return (free_file(fd, &files));
 	i = ft_strcjoin(line, cur->content, '\n');
 	(i < (int)ft_strlen(cur->content))
 	? cur->content = ft_cropstr(cur->content, i + 1)

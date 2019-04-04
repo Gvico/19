@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 11:55:02 by gvico             #+#    #+#             */
-/*   Updated: 2019/04/04 12:36:39 by gvico            ###   ########.fr       */
+/*   Updated: 2019/04/04 14:41:34 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int				free_file(int fd, t_list **files)
 	t_list		*cur;
 	t_list		*tmp;
 
+	cur = *files;
+	tmp = cur;
 	if ((*files)->next)
 	{
-		cur = *files;
-		tmp = cur;
 		if ((int)cur->content_size != fd)
 		{
 			while (cur->next && (int)cur->next->content_size != fd)
@@ -48,11 +48,8 @@ int				free_file(int fd, t_list **files)
 		else
 			*files = (*files)->next;
 	}
-	else
-		tmp = *files;
 	free(tmp->content);
 	free(tmp);
-	tmp = NULL;
 	return (0);
 }
 

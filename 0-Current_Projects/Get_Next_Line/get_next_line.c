@@ -37,6 +37,7 @@ int				free_file(int fd, t_list **files)
 	{
 		cur = *files;
 		if ((int)cur->content_size != fd)
+		{
 			while (cur->next && (int)cur->next->content_size != fd)
 				cur = cur->next;
 		tmp = cur->next;
@@ -44,6 +45,12 @@ int				free_file(int fd, t_list **files)
 			cur->next = cur->next->next;
 		else
 			cur->next = NULL;
+		}
+		else
+		{
+			tmp = cur;
+			*files = *files->next;
+		}
 	}
 	else
 		tmp = *files;

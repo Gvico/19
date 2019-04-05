@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 11:55:02 by gvico             #+#    #+#             */
-/*   Updated: 2019/04/04 14:41:34 by gvico            ###   ########.fr       */
+/*   Updated: 2019/04/05 10:21:24 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,11 @@ int				free_file(int fd, t_list **files)
 		else
 			*files = (*files)->next;
 	}
-	free(tmp->content);
-	free(tmp);
+	if (ft_strlen(cur->content))
+	{
+		free(tmp->content);
+		free(tmp);
+	}
 	return (0);
 }
 

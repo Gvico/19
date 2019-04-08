@@ -1,38 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   line.c                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/17 13:04:08 by gvico             #+#    #+#             */
-/*   Updated: 2019/01/17 13:04:23 by gvico            ###   ########.fr       */
+/*   Created: 2019/01/17 13:03:12 by gvico             #+#    #+#             */
+/*   Updated: 2019/04/02 14:30:50 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
+#include <stdio.h>
+#include "get_next_line.h"
 
 /*
-**		Test file
+**	Test file
 */
 
-void	test(char **line)
+int	main(int argc, char **argv)
 {
-	char	*ptr;
+	int		fd;
+	char	*line;
 
-	ptr = *line;
-	(*line)[2] = 'V';
-	ptr[2] = 'G';
-}
-
-int		main(void)
-{
-	char	*str;
-
-	str = (char *)malloc(sizeof(char) * 6);
-	test(&str);
-	write(1, &(str[2]), 1);
-	write(1, "\n", 1);
+	if (argc == 1)
+		return (0);
+	if ((fd = open(argv[1], O_RDONLY)) == -1)
+	{
+		write(2, "Open error\n", 11);
+		return (-1);
+	}
+	while (get_next_line(fd, &line))
+	{
+		printf("%s\n", line);
+		free(line);
+	}
+	free(line);
+	close(fd);
 	return (0);
 }

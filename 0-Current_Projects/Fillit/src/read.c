@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 11:32:06 by gvico             #+#    #+#             */
-/*   Updated: 2019/04/29 11:02:47 by gvico            ###   ########.fr       */
+/*   Updated: 2019/04/29 13:48:33 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,7 @@ int	check_tetro(char *str)
 		if ((i % 5 == 4 && str[i] != '\n')
 				|| (i % 5 != 4 && (str[i] != '#' && str[i] != '.'))
 				|| (str[i] == '#' && ++blocs > 4))
-		{
-			printf("Nup\n");
 			return (-1);
-		}
 		i++;
 	}
 	if (i != 20 || check_tetro_connect(str) != 0)
@@ -75,6 +72,7 @@ int	check_tetro(char *str)
 /*
 ** 'int' type to be changed
 **	To get one Tetromino, we must read 21 characters (Tetro + \n)
+** ! Don't forget to remove printf's
 */
 
 int	read_file(int fd)
@@ -91,7 +89,8 @@ int	read_file(int fd)
 			free(buf);
 			return (-1);
 		}
+		printf("1 tetro read\n");
 	}
-	printf("Ok !");
+	printf("Tetro format Ok !\n");
 	return (0);
 }

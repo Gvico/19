@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_wordcount.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 14:20:44 by gvico             #+#    #+#             */
-/*   Updated: 2019/04/29 10:52:28 by gvico            ###   ########.fr       */
+/*   Created: 2018/07/06 11:08:43 by gvico             #+#    #+#             */
+/*   Updated: 2019/02/11 11:23:31 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "libft.h"
-# include <fcntl.h>
+int	ft_wordcount(char const *s, char c)
+{
+	size_t words;
 
-int	check_tetro_connections(char *str);
-int	check_tetro(char *str);
-int	read_file(int fd);
-
-#endif
+	words = 0;
+	while (*s)
+	{
+		while (*s == c)
+			s++;
+		if (*s && *s != c)
+		{
+			words++;
+			while (*s && *s != c)
+				s++;
+		}
+	}
+	return (words);
+}

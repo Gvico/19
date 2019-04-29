@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/29 15:25:03 by gvico             #+#    #+#             */
-/*   Updated: 2019/04/29 10:53:34 by gvico            ###   ########.fr       */
+/*   Created: 2018/07/06 08:31:19 by gvico             #+#    #+#             */
+/*   Updated: 2019/01/29 16:14:16 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+t_list	*ft_lstnew(void const *content, size_t content_size)
 {
-	int fd;
+	t_list	*new;
 
-	if (argc != 2)
+	if (!(new = (t_list *)malloc(sizeof(t_list))))
+		return (NULL);
+	if (!content)
 	{
-		ft_putstr("usage: fillit input_file\n");
-		return (1);
+		new->content = NULL;
+		new->content_size = 0;
 	}
-	if (read_file(open(argv[1], O_RDONLY)) != 0)
+	else
 	{
-		ft_putstr("error\n");
-		return (1);
+		if (!(new->content = malloc(content_size)))
+			return (NULL);
+		ft_memcpy(new->content, content, content_size);
+		new->content_size = content_size;
 	}
-	return (0);
+	new->next = NULL;
+	return (new);
 }

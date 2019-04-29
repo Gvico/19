@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_cropstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 14:20:44 by gvico             #+#    #+#             */
-/*   Updated: 2019/04/29 10:52:28 by gvico            ###   ########.fr       */
+/*   Created: 2019/04/03 13:44:13 by gvico             #+#    #+#             */
+/*   Updated: 2019/04/03 13:49:05 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "libft.h"
-# include <fcntl.h>
+char		*ft_cropstr(char *str, int i)
+{
+	char			*new;
+	int				len;
 
-int	check_tetro_connections(char *str);
-int	check_tetro(char *str);
-int	read_file(int fd);
-
-#endif
+	len = 0;
+	while (str[i + len])
+		len++;
+	if (!(new = (char *)malloc(sizeof(char) * (len + 1))))
+		return (NULL);
+	new[len] = '\0';
+	while (--len >= 0)
+		new[len] = str[i + len];
+	free(str);
+	return (new);
+}

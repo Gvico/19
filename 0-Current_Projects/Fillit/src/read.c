@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 11:32:06 by gvico             #+#    #+#             */
-/*   Updated: 2019/04/26 14:04:54 by gvico            ###   ########.fr       */
+/*   Updated: 2019/04/29 10:53:15 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int	check_tetro_connect(char *str)
 {
 	int	i;
-	int	block;
+	int	conn;
 
 	i = 0;
 	conn = 0;
 	while (i < 20)
 	{
-		if (str[i] = '#')
+		if (str[i] == '#')
 		{
 			if (str[i - 1] == '#')
 				conn++;
@@ -79,14 +79,16 @@ int	read_file(int fd)
 	char	*buf;
 
 	if (fd < 1)
-		return (NULL);
+		return (-1);
 	buf = ft_strnew(21);
 	while (read(fd, buf, 21))
 	{
 		if (check_tetro(buf) != 0)
 		{
 			free(buf);
-			return (NULL);
+			return (-1);
 		}
 	}
+	printf("Ok !");
+	return (0);
 }

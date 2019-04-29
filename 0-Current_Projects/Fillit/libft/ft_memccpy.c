@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 14:20:44 by gvico             #+#    #+#             */
-/*   Updated: 2019/04/29 10:52:28 by gvico            ###   ########.fr       */
+/*   Created: 2018/06/29 10:47:13 by gvico             #+#    #+#             */
+/*   Updated: 2018/07/04 10:01:11 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "libft.h"
-# include <fcntl.h>
+void	*ft_memccpy(void *dest, const void *src, int c, size_t size)
+{
+	size_t			i;
+	unsigned char	*s;
+	unsigned char	*d;
 
-int	check_tetro_connections(char *str);
-int	check_tetro(char *str);
-int	read_file(int fd);
-
-#endif
+	i = -1;
+	s = (unsigned char *)src;
+	d = (unsigned char *)dest;
+	while (++i < size)
+	{
+		d[i] = s[i];
+		if (s[i] == (unsigned char)c)
+			return (dest + i + 1);
+	}
+	return (NULL);
+}

@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 14:20:44 by gvico             #+#    #+#             */
-/*   Updated: 2019/04/29 10:52:28 by gvico            ###   ########.fr       */
+/*   Created: 2018/07/06 08:34:09 by gvico             #+#    #+#             */
+/*   Updated: 2018/07/06 08:37:47 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "libft.h"
-# include <fcntl.h>
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+{
+	t_list	*nxt;
+	t_list	*cur;
 
-int	check_tetro_connections(char *str);
-int	check_tetro(char *str);
-int	read_file(int fd);
-
-#endif
+	nxt = *alst;
+	while (nxt != NULL)
+	{
+		cur = nxt;
+		del(cur->content, cur->content_size);
+		nxt = cur->next;
+		free(cur);
+	}
+	*alst = NULL;
+}

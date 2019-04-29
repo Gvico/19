@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 14:20:44 by gvico             #+#    #+#             */
-/*   Updated: 2019/04/29 10:52:28 by gvico            ###   ########.fr       */
+/*   Created: 2018/06/14 14:46:50 by gvico             #+#    #+#             */
+/*   Updated: 2018/07/04 13:47:46 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "libft.h"
-# include <fcntl.h>
+char	*ft_strmap(char const *s, char (*f)(char))
+{
+	char	*newstr;
+	size_t	i;
 
-int	check_tetro_connections(char *str);
-int	check_tetro(char *str);
-int	read_file(int fd);
-
-#endif
+	if (s == NULL || f == NULL)
+		return (NULL);
+	newstr = ft_strnew(ft_strlen(s));
+	i = -1;
+	if (newstr == NULL)
+		return (NULL);
+	while (s[++i])
+		newstr[i] = (*f)(s[i]);
+	newstr[i] = '\0';
+	return (newstr);
+}

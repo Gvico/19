@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strcjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 14:20:44 by gvico             #+#    #+#             */
-/*   Updated: 2019/04/29 10:52:28 by gvico            ###   ########.fr       */
+/*   Created: 2019/02/07 12:29:55 by gvico             #+#    #+#             */
+/*   Updated: 2019/04/01 14:51:24 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "libft.h"
-# include <fcntl.h>
+int	ft_strcjoin(char **dst, char const *src, char c)
+{
+	int		len;
+	int		i;
+	char	*str;
 
-int	check_tetro_connections(char *str);
-int	check_tetro(char *str);
-int	read_file(int fd);
-
-#endif
+	len = 0;
+	while (src[len] && src[len] != c)
+		len++;
+	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
+		return (0);
+	i = -1;
+	while (++i < len)
+		str[i] = src[i];
+	str[i] = '\0';
+	if (!(*dst = ft_strsjoin(*dst, str)))
+		return (0);
+	free(str);
+	return (len);
+}

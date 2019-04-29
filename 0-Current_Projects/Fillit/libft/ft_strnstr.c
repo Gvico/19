@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/29 15:25:03 by gvico             #+#    #+#             */
-/*   Updated: 2019/04/29 10:53:34 by gvico            ###   ########.fr       */
+/*   Created: 2018/06/13 14:40:29 by gvico             #+#    #+#             */
+/*   Updated: 2018/07/09 15:20:54 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	int fd;
+	size_t	i;
+	size_t	j;
 
-	if (argc != 2)
+	if (needle[0] == '\0')
+		return ((char *)haystack);
+	i = 0;
+	while (haystack[i] != '\0' && i < len)
 	{
-		ft_putstr("usage: fillit input_file\n");
-		return (1);
+		j = 0;
+		while (needle[j] != '\0')
+		{
+			if (i + j >= len || haystack[i + j] != needle[j])
+				break ;
+			j++;
+		}
+		if (needle[j] == '\0')
+			return ((char *)(haystack + i));
+		i++;
 	}
-	if (read_file(open(argv[1], O_RDONLY)) != 0)
-	{
-		ft_putstr("error\n");
-		return (1);
-	}
-	return (0);
+	return (NULL);
 }

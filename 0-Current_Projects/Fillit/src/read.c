@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 11:32:06 by gvico             #+#    #+#             */
-/*   Updated: 2019/04/29 10:53:15 by gvico            ###   ########.fr       */
+/*   Updated: 2019/04/29 11:02:47 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,13 @@ int	check_tetro(char *str)
 	blocs = 0;
 	while (str[i] && i < 20)
 	{
-		if ((!(i % 5 < 4) && str[i] != '\n')
-				|| (!(str[i] == '#' || str[i] == '.'))
+		if ((i % 5 == 4 && str[i] != '\n')
+				|| (i % 5 != 4 && (str[i] != '#' && str[i] != '.'))
 				|| (str[i] == '#' && ++blocs > 4))
+		{
+			printf("Nup\n");
 			return (-1);
+		}
 		i++;
 	}
 	if (i != 20 || check_tetro_connect(str) != 0)

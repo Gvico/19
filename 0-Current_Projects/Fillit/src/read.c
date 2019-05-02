@@ -6,11 +6,16 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 11:32:06 by gvico             #+#    #+#             */
-/*   Updated: 2019/04/29 13:48:33 by gvico            ###   ########.fr       */
+/*   Updated: 2019/05/01 12:27:06 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+/*
+** Checks the number of connections between two '#'s.
+** If there are 6 or 8, it is a tetromino!
+*/
 
 int	check_tetro_connect(char *str)
 {

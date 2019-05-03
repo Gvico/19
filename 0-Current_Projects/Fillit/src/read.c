@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 11:32:06 by gvico             #+#    #+#             */
-/*   Updated: 2019/05/01 12:27:06 by gvico            ###   ########.fr       */
+/*   Updated: 2019/05/03 11:07:06 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** If there are 6 or 8, it is a tetromino!
 */
 
-int	check_tetro_connect(char *str)
+int	check_connections(char *str)
 {
 	int	i;
 	int	conn;
@@ -69,7 +69,7 @@ int	check_tetro(char *str)
 			return (-1);
 		i++;
 	}
-	if (i != 20 || check_tetro_connect(str) != 0)
+	if (i != 20 || check_connections(str) != 0)
 		return (-1);
 	return (0);
 }

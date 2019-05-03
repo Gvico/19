@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:20:44 by gvico             #+#    #+#             */
-/*   Updated: 2019/04/29 10:52:28 by gvico            ###   ########.fr       */
+/*   Updated: 2019/05/03 11:07:26 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "libft.h"
 # include <fcntl.h>
 
-int	check_tetro_connections(char *str);
+int	check_connections(char *str);
 int	check_tetro(char *str);
 int	read_file(int fd);
 

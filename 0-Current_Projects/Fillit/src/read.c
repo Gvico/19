@@ -6,18 +6,54 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 11:32:06 by gvico             #+#    #+#             */
-/*   Updated: 2019/05/03 11:07:06 by gvico            ###   ########.fr       */
+/*   Updated: 2019/05/08 14:24:42 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+void	get_limits(char *str, t_point *min, t_point *max)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '#')
+		{
+			if (i % 5 < min->x)
+				min->x = i % 5;
+			if (i % 5 > max->x)
+				max->x = i % 5;
+			if (i / 5 < min->y)
+				min->y = i / 5;
+			if (i / 5 > max->y)
+				max->y = i / 5;
+		}
+		i++;
+	}
+}
+
+t_etro	*get_tetro(char *str)
+{
+	t_etro	*tetro;
+	t_point	*min;
+	t_point	*max;
+	char	**piece;
+	int		i;
+
+	if (!(tetro = ft_memalloc(sizeof(t_etro))))
+		return (NULL);
+	get_limits(str, min, max);
+	i = 0;
+}
 
 /*
 ** Checks the number of connections between two '#'s.
 ** If there are 6 or 8, it is a tetromino!
 */
 
-int	check_connections(char *str)
+int		check_connections(char *str)
 {
 	int	i;
 	int	conn;
@@ -54,7 +90,7 @@ int	check_connections(char *str)
 ** - Blocks connections are good (see check_tetro_connect())
 */
 
-int	check_tetro(char *str)
+int		check_tetro(char *str)
 {
 	int	i;
 	int	blocs;
@@ -75,24 +111,24 @@ int	check_tetro(char *str)
 }
 
 /*
-** 'int' type to be changed
 **	To get one Tetromino, we must read 21 characters (Tetro + \n)
+**  Must do a list
 ** ! Don't forget to remove printf's
 */
 
-int	read_file(int fd)
+t_etro	*read_file(int fd)
 {
 	char	*buf;
 
 	if (fd < 1)
-		return (-1);
+		return (NULL);
 	buf = ft_strnew(21);
 	while (read(fd, buf, 21))
 	{
 		if (check_tetro(buf) != 0)
 		{
 			free(buf);
-			return (-1);
+			return (NULL);
 		}
 		printf("1 tetro read\n");
 	}

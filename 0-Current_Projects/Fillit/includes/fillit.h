@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:20:44 by gvico             #+#    #+#             */
-/*   Updated: 2019/05/06 14:29:31 by gvico            ###   ########.fr       */
+/*   Updated: 2019/05/08 09:54:27 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct	s_etro
 	char	*str;
 	int		width;
 	int		height;
-	int		val;
+	char	val;
 }				t_etro;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:20:44 by gvico             #+#    #+#             */
-/*   Updated: 2019/05/08 09:54:27 by gvico            ###   ########.fr       */
+/*   Updated: 2019/05/09 14:26:29 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,13 @@ typedef struct	s_point
 
 typedef struct	s_etro
 {
-	char	*str;
+	char	**val;
 	int		width;
 	int		height;
-	char	val;
+	char	num;
 }				t_etro;
+
+void			free_tetro(t_etro *tetro);
+t_etro			*new_tetro(char **val, int width, int height, char num);
 
 #endif

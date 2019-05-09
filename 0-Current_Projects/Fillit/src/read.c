@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 11:32:06 by gvico             #+#    #+#             */
-/*   Updated: 2019/05/08 14:24:42 by gvico            ###   ########.fr       */
+/*   Updated: 2019/05/09 13:41:55 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ t_etro	*get_tetro(char *str)
 	char	**piece;
 	int		i;
 
-	if (!(tetro = ft_memalloc(sizeof(t_etro))))
-		return (NULL);
 	get_limits(str, min, max);
 	i = 0;
 }

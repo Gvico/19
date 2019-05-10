@@ -6,11 +6,11 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 11:32:06 by gvico             #+#    #+#             */
-/*   Updated: 2019/05/09 13:41:55 by gvico            ###   ########.fr       */
+/*   Updated: 2019/05/10 14:31:27 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "../includes/fillit.h"
 
 void	get_limits(char *str, t_point *min, t_point *max)
 {
@@ -44,6 +44,7 @@ t_etro	*get_tetro(char *str)
 
 	get_limits(str, min, max);
 	i = 0;
+	// Unfinished
 }
 
 /*

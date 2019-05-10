@@ -6,19 +6,15 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:20:44 by gvico             #+#    #+#             */
-/*   Updated: 2019/05/09 14:26:29 by gvico            ###   ########.fr       */
+/*   Updated: 2019/05/10 10:51:49 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
 
-# include "libft.h"
+# include "../libft/libft.h"
 # include <fcntl.h>
-
-int				check_connections(char *str);
-int				check_tetro(char *str);
-int				read_file(int fd);
 
 typedef struct	s_point
 {
@@ -33,6 +29,10 @@ typedef struct	s_etro
 	int		height;
 	char	num;
 }				t_etro;
+
+int				check_connections(char *str);
+int				check_tetro(char *str);
+t_etro			*read_file(int fd);
 
 void			free_tetro(t_etro *tetro);
 t_etro			*new_tetro(char **val, int width, int height, char num);

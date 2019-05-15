@@ -6,11 +6,15 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 11:32:06 by gvico             #+#    #+#             */
-/*   Updated: 2019/05/10 14:31:27 by gvico            ###   ########.fr       */
+/*   Updated: 2019/05/15 14:17:36 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fillit.h"
+
+/*
+** Gets the minimum and maximum x and y of the tetro and sets them in the points
+*/
 
 void	get_limits(char *str, t_point *min, t_point *max)
 {
@@ -34,7 +38,11 @@ void	get_limits(char *str, t_point *min, t_point *max)
 	}
 }
 
-t_etro	*get_tetro(char *str)
+/*
+** Converts a 'char *' to a 't_etro' tetro (with its index number)
+*/
+
+t_etro	*get_tetro(char *str, char index)
 {
 	t_etro	*tetro;
 	t_point	*min;
@@ -42,9 +50,22 @@ t_etro	*get_tetro(char *str)
 	char	**piece;
 	int		i;
 
+	min = new_point(0, 0);
+	max = new_point(0, 0);
 	get_limits(str, min, max);
+	piece = ft_memalloc(sizeof(char *) * (max->y - min->y + 1));
 	i = 0;
-	// Unfinished
+	while (i <= max->y - min->y)
+	{
+		piece[i] = ft_strnew(max->x - min->x + 1);
+		ft_strncpy(piece[i], str + min->x + (i + min->y) * 5,
+				max->x - min->x + 1);
+		i++;
+	}
+	tetro = new_tetro(piece, max->x - min->x + 1, max->y - min->y + 1, index);
+	free(min);
+	free(max);
+	return (tetro);
 }
 
 /*
@@ -81,12 +102,12 @@ int		check_connections(char *str)
 }
 
 /*
-** Is checked:
+** Checks tetro structure:
 ** - '\n' every 4 characters
 ** - Only '#' or '.'
 ** - Only 4 '#'
 ** - No less than 20 characters
-** - Blocks connections are good (see check_tetro_connect())
+** - Blocks connections are good (see check_connections())
 */
 
 int		check_tetro(char *str)
@@ -110,8 +131,8 @@ int		check_tetro(char *str)
 }
 
 /*
-**	To get one Tetromino, we must read 21 characters (Tetro + \n)
-**  Must do a list
+** To get one Tetromino, we must read 21 characters (Tetro + \n)
+** ! Must do a list
 ** ! Don't forget to remove printf's
 */
 

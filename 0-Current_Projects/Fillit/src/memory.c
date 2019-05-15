@@ -37,3 +37,13 @@ t_etro	*new_tetro(char **val, int width, int height, char num)
 	new->num = num;
 	return (new);
 }
+
+t_point	*new_point(int x, int y)
+{
+	t_point *new;
+
+	new = ft_memalloc(sizeof(t_point));
+	new->x = x;
+	new->y = y;
+	return (new);
+}

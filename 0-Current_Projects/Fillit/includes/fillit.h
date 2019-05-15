@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:20:44 by gvico             #+#    #+#             */
-/*   Updated: 2019/05/10 10:51:49 by gvico            ###   ########.fr       */
+/*   Updated: 2019/05/15 14:19:00 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ t_etro			*read_file(int fd);
 
 void			free_tetro(t_etro *tetro);
 t_etro			*new_tetro(char **val, int width, int height, char num);
+t_point			*new_point(int x, int y);
 
 #endif

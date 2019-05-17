@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:20:44 by gvico             #+#    #+#             */
-/*   Updated: 2019/05/15 14:19:00 by gvico            ###   ########.fr       */
+/*   Updated: 2019/05/17 14:16:20 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct	s_etro
 
 int				check_connections(char *str);
 int				check_tetro(char *str);
-t_etro			*read_file(int fd);
+t_list			*read_file(int fd);
 
 void			free_tetro(t_etro *tetro);
 t_etro			*new_tetro(char **val, int width, int height, char num);

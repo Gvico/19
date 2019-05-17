@@ -16,7 +16,7 @@
 ** Gets the minimum and maximum x and y of the tetro and sets them in the points
 */
 
-void	get_limits(char *str, t_point *min, t_point *max)
+void		get_limits(char *str, t_point *min, t_point *max)
 {
 	int	i;
 
@@ -73,7 +73,7 @@ t_etro	*get_tetro(char *str, char index)
 ** If there are 6 or 8, it is a tetromino!
 */
 
-int		check_connections(char *str)
+int			check_connections(char *str)
 {
 	int	i;
 	int	conn;
@@ -110,7 +110,7 @@ int		check_connections(char *str)
 ** - Blocks connections are good (see check_connections())
 */
 
-int		check_tetro(char *str)
+int			check_tetro(char *str)
 {
 	int	i;
 	int	blocs;
@@ -136,16 +136,20 @@ int		check_tetro(char *str)
 ** ! Don't forget to remove printf's
 */
 
-t_etro	*read_file(int fd)
+t_list	*read_file(int fd)
 {
-	char	*buf;
+	t_etro	*tetro;
+	t_list	*list;
+	char		*buf;
+	char		cur;
 
 	if (fd < 1)
 		return (NULL);
 	buf = ft_strnew(21);
+	cur = 'A';
 	while (read(fd, buf, 21))
 	{
-		if (check_tetro(buf) != 0)
+		if (check_tetro(buf) != 0 || !(tetro = get_tetro(buf, cur++)))
 		{
 			free(buf);
 			return (NULL);
@@ -153,5 +157,5 @@ t_etro	*read_file(int fd)
 		printf("1 tetro read\n");
 	}
 	printf("Tetro format Ok !\n");
-	return (0);
+	return (list);	// Will result in an error for now cause list is not used, therefore uninitialized
 }

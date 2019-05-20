@@ -145,6 +145,7 @@ t_list	*read_file(int fd)
 
 	if (fd < 1)
 		return (NULL);
+	list = NULL;
 	buf = ft_strnew(21);
 	cur = 'A';
 	while (read(fd, buf, 21))
@@ -154,8 +155,10 @@ t_list	*read_file(int fd)
 			free(buf);
 			return (NULL);
 		}
+		ft_lstadd(&list, ft_lstnew(tetro, sizeof(t_etro)));
 		printf("1 tetro read\n");
 	}
 	printf("Tetro format Ok !\n");
-	return (list);	// Will result in an error for now cause list is not used, therefore uninitialized
+	free(buf);
+	return (list);
 }

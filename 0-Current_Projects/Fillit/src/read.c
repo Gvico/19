@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 11:32:06 by gvico             #+#    #+#             */
-/*   Updated: 2019/05/23 13:09:00 by gvico            ###   ########.fr       */
+/*   Updated: 2019/05/23 13:18:14 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_etro	*get_tetro(char *str, char index)
 
 	min = new_point(3, 3);
 	max = new_point(0, 0);
-	get_limits(str, min, max); // Something's wrong around here (min on one_valid_tetro is 0,0)
+	get_limits(str, min, max);
 	piece = ft_memalloc(sizeof(char *) * (max->y - min->y + 1));
 	i = 0;
 	while (i <= max->y - min->y)
@@ -132,8 +132,6 @@ int			check_tetro(char *str)
 
 /*
 ** To get one Tetromino, we must read 21 characters (Tetro + \n)
-** ! Must do a list
-** ! Don't forget to remove printf's
 */
 
 t_list	*read_file(int fd)
@@ -156,9 +154,7 @@ t_list	*read_file(int fd)
 			return (NULL);
 		}
 		ft_lstadd(&list, ft_lstnew(tetro, sizeof(t_etro)));
-		printf("1 tetro read\n");
 	}
-	printf("Tetro format Ok !\n");
 	free(buf);
 	return (list);
 }

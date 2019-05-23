@@ -6,7 +6,7 @@
 /*   By: gvico <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 11:32:06 by gvico             #+#    #+#             */
-/*   Updated: 2019/05/15 14:17:36 by gvico            ###   ########.fr       */
+/*   Updated: 2019/05/23 13:09:00 by gvico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ t_etro	*get_tetro(char *str, char index)
 	char	**piece;
 	int		i;
 
-	min = new_point(0, 0);
+	min = new_point(3, 3);
 	max = new_point(0, 0);
-	get_limits(str, min, max);
+	get_limits(str, min, max); // Something's wrong around here (min on one_valid_tetro is 0,0)
 	piece = ft_memalloc(sizeof(char *) * (max->y - min->y + 1));
 	i = 0;
 	while (i <= max->y - min->y)
